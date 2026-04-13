@@ -7,4 +7,4 @@ Ensure your workout program is in the same directory you are running from and th
 following file types: .xlsx, .ods, .pdf, .html, .csv
 
 Run the workout processor with the following command:
-'python workout-processor.py your-workout-program.xlsx'
+`python workout-processor.py your-workout-program.xlsx`
