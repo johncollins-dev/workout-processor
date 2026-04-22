@@ -25,9 +25,8 @@ the program must check for:
 - [x] too many arguments provided
 - [x] that the file exists
 - [x] that the file is in an accepted format
-
-once that is done, the file must be
-- [ ] opened
-- [ ] checked for syntax
+Once the file is verified as existing and in an acceptable format, it must be:
+- [ ] opened (using openpyxl for xlsx first)
+- [ ] checked for syntax (title, date, blocks, notes)
 - [ ] checked for data validity
 - [ ] read in to a dataframe

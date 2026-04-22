@@ -26,7 +26,7 @@
 - Description: String
 - Notes: String
 ## Block
-- Name: String
+- Title: String
 - Exercises: List<Exercise>
 - Tags: List<Tags>
 - Sets: Volume
