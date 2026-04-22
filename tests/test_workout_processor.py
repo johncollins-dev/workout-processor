@@ -1,4 +1,4 @@
-import workout_processor.workout_processor as wp
+from workout_processor import workout_processor as wp
 import pytest
 
 def test_validate_file():
@@ -6,5 +6,5 @@ def test_validate_file():
     with pytest.raises(FileNotFoundError):
         wp.validate_file("filename.txt")
 
-def test_get_extension():
-    assert wp.get_extension("filename.txt") == '.txt'
+def test_check_extension():
+    assert wp.check_extension("filename.xlsx") == '.xlsx'

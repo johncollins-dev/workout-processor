@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 import pandas as pd
 import pdb
-from config import ACCEPTED_EXTENSIONS
+from .config import ACCEPTED_EXTENSIONS
 
 def validate_file(filename):
     p = Path(filename)
