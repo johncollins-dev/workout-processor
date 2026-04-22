@@ -7,6 +7,8 @@ import pandas as pd
 import pdb
 from .config import ACCEPTED_EXTENSIONS
 
+USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.pdf"
+
 def validate_file(filename):
     p = Path(filename)
     if not (p.is_file()):
@@ -37,8 +39,7 @@ def run(input_file):
 # TODO: If no file is passed as command line argument, print usage message
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        # print usage message, exit
-        print("Incorrect Usage")
+        print(USAGE_MESSAGE)
 
     run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
