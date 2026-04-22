@@ -1,30 +1,30 @@
-# workout-processor.py
+# workout_processor.py
 
 # imports
 import sys
 from pathlib import Path
 import pandas as pd
 import pdb
-import pytest
+from config import ACCEPTED_EXTENSIONS
 
-# function to determine file type
-# TODO: check that the input provided is valid path, if not throw error
 def validate_file(filename):
     p = Path(filename)
     if not (p.is_file()):
         raise FileNotFoundError
     return True
 
-def get_extension(filename: Path):
-    accepted_extensions = {'.ods', '.pdf', '.csv', '.xlsx'}
-    extension = filename.suffix
+def check_extension(filename):
+    extension = Path(filename).suffix
+    if extension not in ACCEPTED_EXTENSIONS:
+        # raise a custom exception
+        print("Extension not accepted")
+
     return extension
 
 # run() function that basically just keeps main clean
-def run()
-    input_file = sys.argv[1]
+def run(input_file):
     validate_file(input_file)
-    get_extension(Path(input_file))
+    check_extension(Path(input_file))
 
 # read() function that takes file according to type starts parsing process
 
@@ -38,6 +38,8 @@ def run()
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         # print usage message, exit
-    run()
+        print("Incorrect Usage")
+
+    run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
     #print(data)

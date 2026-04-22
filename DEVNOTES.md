@@ -4,7 +4,8 @@
   readable html file while retaining all the data
 - the name "workout-processor" is not descriptive or makes it clear what its trying to do.
   something like workout-to-html might be more suitable
-
+- John Roberts advocated for test-driven development. I should at least make tests for methods soon
+after they are written
 
 So far, I've had to install the following python libraries:
 - dev-python/openpyxl (pure python reader and writer of Excel OpenXML files)
