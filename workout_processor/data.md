@@ -37,7 +37,7 @@
 - Blocks: List<Block>
 - Sets: Volume
 - Notes: String
-## Period
+## Period - can be thought of as week containing workouts
 - Name: String
 - PeriodType: PeriodType
 - Workouts: List<Workout>
