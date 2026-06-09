@@ -32,11 +32,20 @@ General program implementation criteria
   be used without interference from the program
 * Everything can use default or user specified tags (#strength, #barbell) for easy searching and
   to improve program recommendation
+* so far, none of these datatypes deal with sets or weights/reps. they are only a way to abstract
+  exercises and lists of exercises.
 
 ## Future Considerations
 - Programs, periods, workouts, blocks could be replaced by arbitrary "layers" that can contain
   exercises or other layers
-  
+- There are already human anatomy apis and exercise databases out there. Need to decide on whether
+  to use those or create own.
+- End result of these programs is creating the "Canvas" of gyms. This software should be easy for
+  businesses to implement and run and attach their own branding.
+    * Look at what strengthportal tried to do and why they seemingly "Failed"
+- Workout format accounts for supersets too
+- use an open model like llama to train custom llm for domain-specific knowledge of fitness
+  training. Automate programming and provide reliable information to coaches and clients.
 ## Control Flow
 user runs workout-processor on a file
 the program must check for:
@@ -79,3 +88,7 @@ So far, I've had to install the following python libraries:
 ### get_extension(filename)
 - checks if the extension is accepted, then returns it
 
+## Class Notes
+### data.py
+- have to be careful with list instance variables in dataclasses, must use **default_factory** so
+  that instances of class don't all use the same list in memory
