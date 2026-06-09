@@ -1,11 +1,42 @@
 # workout-processor devnotes
 
 ## Purpose
+Like a XLSX2HTML program for my workout sheets
 This program's purpose is to accept as input training programs as .xlsx files from my work drive
 and ouput html files that present the training program and renditions of the workouts. The end goal
 is to provide a more human readable and presentable representation of the workout programs I make
 for clients while adding no extra work on top of the workout programming I do in google sheets.
 
+## Inadequacies of Sheets
+- not a user friendly experience, especially on mobile
+- can be hard to find previously used blocks that I want to copy into other programs
+- have to clear out old workouts every once in a while
+- links cannot be played within app on mobile
+
+## Workout Program Standard Format
+General program implementation criteria
+- Should not follow specific "schools" of programming such as IOM with unfamiliar terminology (4Q)
+- Should be simple
+- Ultimate shape of programs/workouts up to the user
+    - "Periods" and "Blocks" should be optional organizational categories
+    - if a user wants to throw in a list of exercises of a workout datatype, they should be able to
+
+### Structure
+- Program
+    * Period (ex. Macro, Meso, Micro)
+        - Workout
+            * Block (ex. warmup, activation, skills, strength)
+                - Exercise
+* Programs, Periods, Workouts, Blocks, and Exercises are saveable data that can be used later
+* Every datatype above is optional. Each one should be a workable/displayable (html) item that can
+  be used without interference from the program
+* Everything can use default or user specified tags (#strength, #barbell) for easy searching and
+  to improve program recommendation
+
+## Future Considerations
+- Programs, periods, workouts, blocks could be replaced by arbitrary "layers" that can contain
+  exercises or other layers
+  
 ## Control Flow
 user runs workout-processor on a file
 the program must check for:
@@ -27,13 +58,7 @@ Definition of "syntax"
 - a workout ends with a date in mm/dd/yyyy format on the same row as day
 - the row below Day should start with "Exercise" followed by at least 1 column containing "Set"
   followed by a number
-  
-Tree Structure:
-- Training Program
-    - Period (1 or more)
-        - Workout (1 or more)
-            - Block (1 or more)
-                - Exercise (1 or more)
+
 ## notes
 - the most convenient use for workout processor is running the command
   "workout-processor 4-15-26.xlsx" with an appended workout sheet to convert it into a human
