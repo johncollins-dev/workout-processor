@@ -46,6 +46,7 @@ General program implementation criteria
 - Workout format accounts for supersets too
 - use an open model like llama to train custom llm for domain-specific knowledge of fitness
   training. Automate programming and provide reliable information to coaches and clients.
+
 ## Control Flow
 user runs workout-processor on a file
 the program must check for:

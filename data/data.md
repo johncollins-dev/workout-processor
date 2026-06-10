@@ -25,6 +25,8 @@
 - Instructions: String
 - Description: String
 - Notes: String
+- Progression: Exercise
+- Regression: Exercise
 ## Block
 - Title: String
 - Exercises: List<Exercise>
