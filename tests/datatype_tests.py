@@ -7,6 +7,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from data.data import *
+from datetime import datetime
 
 print("test file is running")
 # muscles
@@ -73,7 +74,11 @@ line1 = Line(
 Testing Block
 '''
 block1 = Block(
-        title='Strength'
-
+        title='Strength',
+        date=datetime(2026, 6, 18),
+        purpose='do a lot of pull ups',
+        description='i hope you like pull ups',
+        lines=[line1, line1, line1, line1],
+        tags=[bodyweight, hard, pubar]
 )
 print(repr(block1))
