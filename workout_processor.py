@@ -7,6 +7,7 @@ import pandas as pd
 import pdb
 from config import ACCEPTED_EXTENSIONS
 from data.data import Exercise, Muscle, Equipment, Adaptation, Movement, Tag
+from reader import read
 
 USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.pdf"
 
@@ -48,3 +49,4 @@ if __name__ == "__main__":
     #run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
     #print(data)
+    read('Chelsea Chen.xlsx')

@@ -22,9 +22,12 @@ General program implementation criteria
     - if a user wants to throw in a list of exercises in a workout, they should be able to
 
 ### Structure
-- workout_processor.py - main driver of the program
+- workout_processor.py - main driver of the program, is a CLI app
 - data.py - defines the necessary data structures needed to take in training program information
 - config.py - contains default configuration for the program
+- reader.py - takes an input file and reads in the data using openpyxl
+- builder.py - builds a training program start to finish
+- printer.py - prints a workout program to HTML using jinja2
 
 #### Training Program Structure
 - Program
@@ -119,3 +122,6 @@ class Line:
 - set the default to NONE when using a class as an instance variable then
   account for it in your code later
 
+### reader.py
+- uses openpyxl to open and read in an xlsx file
+- to find a workout layer, reader looks for a black background, white foreground, bold text
