@@ -67,4 +67,13 @@ line1 = Line(
          Cell('Set 4', '6'),
          Cell('Rest', '60s')]
 )
-print(repr(line1))
+#print(repr(line1))
+
+'''
+Testing Block
+'''
+block1 = Block(
+        title='Strength'
+
+)
+print(repr(block1))

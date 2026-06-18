@@ -83,9 +83,9 @@ contains blocks of blocks that contain workouts, etc.
 @dataclass
 class Block:
     title: str
-    date: datetime
-    purpose: str
-    description: str
+    date: datetime | None = None
+    purpose: str = 'ADD PURPOSE'
+    description: str = 'ADD DESCRIPTION'
     lines: list[Line] = field(default_factory=list)
     tags: list[Tag] = field(default_factory=list)
 
