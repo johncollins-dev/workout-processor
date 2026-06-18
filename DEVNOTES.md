@@ -111,3 +111,11 @@ NOT OK:
 class Line:
     cells: list[Cell] = field(default_factory=list)
     exercise: Exercise
+
+- when instantiating a dataclass, variables without defaults are considered  required when inputing
+  parameters
+- when setting an instance variable type to the class being defined, use a   forward reference
+  instead of trying to create it while its still being defined
+- set the default to NONE when using a class as an instance variable then
+  account for it in your code later
+

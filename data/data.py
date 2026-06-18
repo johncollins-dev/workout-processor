@@ -35,16 +35,16 @@ class Equipment:
 @dataclass
 class Exercise:
     name: str
-    demo: str
-    prime_mover: Muscle
-    equipment: Equipment
-    instructions: str
-    description: str
-    notes: str
-    progression: Exercise
-    regression: Exercise
-    adaptation: Adaptation
-    movement: Movement
+    demo: str = 'ADD DEMONSTRATION'
+    prime_mover: Muscle | None = None
+    equipment: Equipment | None = None
+    instructions: str = 'ADD INSTRUCTIONS'
+    description: str = 'ADD DESCRIPTION'
+    notes: str = 'ADD NOTES'
+    progression: 'Exercise | None' = None
+    regression: 'Exercise | None' = None
+    adaptation: Adaptation | None = None
+    movement: Movement | None = None
     synergists: list[Muscle] = field(default_factory=list)
     tags: list[Tag] = field(default_factory=list)
 

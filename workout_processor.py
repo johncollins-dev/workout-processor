@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 import pdb
 from config import ACCEPTED_EXTENSIONS
-import data.data
+from data.data import Exercise
 
 USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.pdf"
 
@@ -43,13 +43,16 @@ def run(input_file):
 '''
 datatypes tester
 '''
-
+def type_test():
+    exercise1 = Exercise('Push Up')
+    print(repr(exercise1))
 
 
 # TODO: If no file is passed as command line argument, print usage message
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(USAGE_MESSAGE)
+    type_test()
+    #if len(sys.argv) != 2:
+    #    print(USAGE_MESSAGE)
 
     #run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
