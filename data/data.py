@@ -1,8 +1,8 @@
 """
 data.py
 """
-
-from dataclasses import dataclass
+from __future__ import annotations
+from dataclasses import dataclass, field
 import datetime
 
 # used in exercise
@@ -37,16 +37,16 @@ class Exercise:
     name: str
     demo: str
     prime_mover: Muscle
-    synergists: list[Muscle] = field(default_factory=list)
-    adaptation: Adaptation
-    movement: Movement
-    tags: list[Tag] = field(default_factory=list)
     equipment: Equipment
     instructions: str
     description: str
     notes: str
     progression: Exercise
     regression: Exercise
+    adaptation: Adaptation
+    movement: Movement
+    synergists: list[Muscle] = field(default_factory=list)
+    tags: list[Tag] = field(default_factory=list)
 
 '''
 Cells are to be used in lines

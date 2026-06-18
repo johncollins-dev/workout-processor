@@ -99,3 +99,15 @@ So far, I've had to install the following python libraries:
 ### data.py
 - have to be careful with list instance variables in dataclasses, must use **default_factory** so
   that instances of class don't all use the same list in memory
+- in python, class attributes without default values MUST come BEFORE attributes with defaults ex:
+
+OK:
+@dataclass
+class Line:
+    exercise: Exercise
+    cells: list[Cell] = field(default_factory=list)
+NOT OK:
+@dataclass
+class Line:
+    cells: list[Cell] = field(default_factory=list)
+    exercise: Exercise

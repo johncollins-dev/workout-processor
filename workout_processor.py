@@ -6,6 +6,7 @@ from pathlib import Path
 import pandas as pd
 import pdb
 from config import ACCEPTED_EXTENSIONS
+import data.data
 
 USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.pdf"
 
@@ -39,11 +40,17 @@ def run(input_file):
 
 # publish() function that fills data from dataframe into html file
 
+'''
+datatypes tester
+'''
+
+
+
 # TODO: If no file is passed as command line argument, print usage message
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(USAGE_MESSAGE)
 
-    run(sys.argv[1])
+    #run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
     #print(data)
