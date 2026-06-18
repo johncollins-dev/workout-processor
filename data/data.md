@@ -27,11 +27,17 @@
 - Notes: String
 - Progression: Exercise
 - Regression: Exercise
+## Line
+- id: int
+- exercise: Exercise
+- cells: List<Cell>
 ## Block
 - Title: String
-- Exercises: List<Exercise>
+- Date: DateTime
+- Purpose: String
+- Description: String
+- Lines: List<Line>
 - Tags: List<Tags>
-- Sets: Volume
 ## Workout
 - Name: String
 - Date: Date

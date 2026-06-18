@@ -5,24 +5,29 @@ data.py
 from dataclasses import dataclass
 import datetime
 
+# used in exercise
 @dataclass
 class Muscle:
     name: str
 
 # Enum potential. Using class to allow user customization/specification
+# used in Exercise
 @dataclass
 class Adaptation:
     name: str
 
 # Enum potential. Using class to allow user customization/specification
+# used in Exercise
 @dataclass
 class Movement:
     name: str
 
+# used in Exercise and Block
 @dataclass
 class Tag:
     name: str
 
+# used in Exercise
 @dataclass
 class Equipment:
     name: str
@@ -68,17 +73,34 @@ class Line:
     exercise: Exercise
     cells: list[Cell] = field(default_factory=list)
 
+'''
+Blocks are an abstraction layer for organizing lines into workouts. They can take the form of
+traditional blocks such as warm ups, activation, strength, cool down, etc. or they can encapsulate
+lines into a singular workout. Blocks can contain other blocks. You can have a workout block that
+contains a warm up and strength block and even a block that contains workout blocks, a block that
+contains blocks of blocks that contain workouts, etc.
+'''
 @dataclass
 class Block:
     title: str
     date: datetime
-    exercises: list[Exercise] = field(default_factory=list)
+    purpose: str
+    description: str
+    lines: list[Line] = field(default_factory=list)
     tags: list[Tag] = field(default_factory=list)
 
+
+
+
+
+
+
+'''
+replaced by Block class
 @dataclass
 class Workout:
     name: str
     date: datetime
     blocks: list[Block] = field(default_factory=list)
     exercises: list[Exercise] = field(default_factory=list)
-
+'''
