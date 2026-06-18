@@ -54,9 +54,17 @@ exercise2 = Exercise(
         synergists = [biceps, rhomboids],
         tags = [bodyweight, hard, pubar]
 )
-print(repr(exercise2))
+#print(repr(exercise2))
 
 '''
 Testing Line
 '''
-
+line1 = Line(
+        exercise2,
+        [Cell('Set 1', '6'),
+         Cell('Set 2', '6'),
+         Cell('Set 3', '6'),
+         Cell('Set 4', '6'),
+         Cell('Rest', '60s')]
+)
+print(repr(line1))
