@@ -19,14 +19,20 @@ General program implementation criteria
 - Should be simple
 - Ultimate shape of programs/workouts up to the user
     - "Periods" and "Blocks" should be optional organizational categories
-    - if a user wants to throw in a list of exercises of a workout datatype, they should be able to
+    - if a user wants to throw in a list of exercises in a workout, they should be able to
 
 ### Structure
+- workout_processor.py - main driver of the program
+- data.py - defines the necessary data structures needed to take in training program information
+- config.py - contains default configuration for the program
+
+#### Training Program Structure
 - Program
     * Period (ex. Macro, Meso, Micro)
         - Workout
             * Block (ex. warmup, activation, skills, strength)
-                - Exercise
+                - Line (1 Exercise, info about sets, rest, etc.)
+                    - Exercise
 * Programs, Periods, Workouts, Blocks, and Exercises are saveable data that can be used later
 * Every datatype above is optional. Each one should be a workable/displayable (html) item that can
   be used without interference from the program
