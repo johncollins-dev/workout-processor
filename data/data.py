@@ -80,6 +80,7 @@ lines into a singular workout. Blocks can contain other blocks. You can have a w
 contains a warm up and strength block and even a block that contains workout blocks, a block that
 contains blocks of blocks that contain workouts, etc.
 '''
+# TODO: implement super/giant set functionality
 @dataclass
 class Block:
     title: str
