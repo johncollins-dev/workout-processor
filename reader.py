@@ -19,6 +19,13 @@ def read(filename):
             sheet = wb.active
             find_title_cell(sheet)
 
-    # set 'Week 1' as active
-    # Run builder, create new block with layer value 1 and title 'Week 1'
-    #
+# return data retrieved from singular sheet in the training program
+# Example: Week 1 - Day 1 ... Day 2 ... Day 3 ...
+def read_sheet(worksheet):
+    # iterate through rows and columns
+    # printing everything in the sheet
+    return worksheet
+
+# return data retrieved from workout within a sheet
+def read_workout():
+
