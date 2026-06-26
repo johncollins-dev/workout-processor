@@ -125,3 +125,12 @@ class Line:
 ### reader.py
 - uses openpyxl to open and read in an xlsx file
 - to find a workout layer, reader looks for a black background, white foreground, bold text
+- can assume that workouts read in will always be the same syntax (google sheets style)
+    * otherwise throw error
+- get_num_sheets - returns int value for # of sheets
+- read_sheet - returns string containing entire sheet data
+- read_workout_next(string) - returns string of first workout found in string, used with read_sheet
+- Sheets and workouts maybe should be iterable.
+  
+### editor.py
+- webui for building workout programs which can be used by reader and printer
