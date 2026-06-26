@@ -22,10 +22,12 @@ def read(filename):
 # return data retrieved from singular sheet in the training program
 # Example: Week 1 - Day 1 ... Day 2 ... Day 3 ...
 def read_sheet(worksheet):
-    # iterate through rows and columns
-    # printing everything in the sheet
-    return worksheet
+    
 
 # return data retrieved from workout within a sheet
-def read_workout():
+def read_workout(cell):
+    # start at provided cell
+    # iterate through rows and columns of singular workouts
+    # record data to list/dict
+    # return list/dict
 

@@ -128,7 +128,19 @@ class Line:
 - can assume that workouts read in will always be the same syntax (google sheets style)
     * otherwise throw error
 - get_num_sheets - returns int value for # of sheets
-- read_sheet - returns string containing entire sheet data
+- read_sheet - returns list of dictionaries, where the list is rows and the dictionaries KV pairs
+               of cells and their column
+    * Only reads rows and columns with data, skips empty rows and columns
+    * workouts are entered into the list/dictionary back-to-back
+    * Scans dimensions of workouts
+        - looks for Cell containing word **Day** with black background/white foreground/bold text.
+        - then scans columns until first cell that is empty
+        - once workout width is found, it iterates through rows copying column data to list/dict
+        - empty rows are omitted but empty cells that are after/between occupied cells are kept
+        - loop stops after first empty row coming after "Coaching Notes" is found
+        - the reader then goes back to the empty cell found immediately after the end of the black
+          columns
+
 - read_workout_next(string) - returns string of first workout found in string, used with read_sheet
 - Sheets and workouts maybe should be iterable.
   
