@@ -3,9 +3,9 @@ reader.py
 '''
 from openpyxl import load_workbook
 
-def find_title_cell(sheet):
-    # iterate through columns until cell with black bg, white fg, and bold
-    # text is found
+# checks if cell has black bg, bold, and starts with 'Day'
+def check_title(cell):
+    return cell.value.startswith('Day') and cell.font.bold and cell.fill.start_color.index == 'FF000000'
 
 def read(filename):
     wb = load_workbook(filename)
