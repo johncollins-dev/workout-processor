@@ -10,19 +10,16 @@ def check_title(cell):
 def read(filename):
     wb = load_workbook(filename)
     ws = wb.active
-    #print(wb.sheetnames)
 
     # iterate through sheets until 'Week 1' is found
     for sheet in wb.worksheets:
-        if (sheet.title == 'Week 1'):
-            print('found week 1:')
+        if (sheet.title.startswith('Week'):
             sheet = wb.active
-            find_title_cell(sheet)
+            read_sheet(sheet)
 
-# return data retrieved from singular sheet in the training program
-# Example: Week 1 - Day 1 ... Day 2 ... Day 3 ...
-def read_sheet(worksheet):
-    
+def read_sheet(sheet):
+    if(check_title(sheet.cell(row=1,column=1))):
+        read_workout(sheet.cell)
 
 # return data retrieved from workout within a sheet
 def read_workout(cell):
