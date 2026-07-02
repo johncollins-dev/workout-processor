@@ -18,6 +18,7 @@ for clients while adding no extra work on top of the workout programming I do in
   the hardcodedness fully and don't waste time and effort trying to make it something its not and
   will never be.
 - XLSX-workouts2HTML or something like that would have been a better name than "workout-processor"
+- whenever youre scanning through some 2d data structure, you usually want nested loops, use while loops if you don't know the dimensions, for if you do
 
 ## Workout Program Standard Format
 General program implementation criteria
