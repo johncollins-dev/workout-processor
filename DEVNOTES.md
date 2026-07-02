@@ -13,6 +13,12 @@ for clients while adding no extra work on top of the workout programming I do in
 - have to clear out old workouts every once in a while
 - links cannot be played within app on mobile
 
+## Lessons learned from workout-processor
+- if you're going to hardcode, dont make your hardcoded code scalable or maintainable. Lean into
+  the hardcodedness fully and don't waste time and effort trying to make it something its not and
+  will never be.
+- XLSX-workouts2HTML or something like that would have been a better name than "workout-processor"
+
 ## Workout Program Standard Format
 General program implementation criteria
 - Should not follow specific "schools" of programming such as IOM with unfamiliar terminology (4Q)
