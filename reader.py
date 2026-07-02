@@ -1,5 +1,9 @@
 '''
 reader.py
+shamelessly hardcoded to read only my personal workout spreadsheets
+
+TODO:
+create tests for get_workout_width
 '''
 from openpyxl import load_workbook
 
@@ -13,20 +17,52 @@ def check_title(cell):
 def check_unused(cell):
     return cell.value == 'None' and cell.fill.start_color.index == '00000000'
 
+def check_coaching_notes(cell):
+    return cell.value == 'Coaching Notes'
+
 def read(filename):
-    wb = load_workbook(filename)
+    wb = load_workbook(filename, read-only = True)
     sheet = wb.active
+    program = []
 
     for sheet in wb.worksheets:
         if(sheet.title.startswith('Week')):
-            read_sheet(sheet)
+            program.append(read_sheet(sheet))
+
+    return program
+
+def get_workout_width(sheet, cell):
+    width = 1
+    c = cell.column
+    r = cell.row
+    while(sheet.cell(row=r,column=c).is_date == False):
+        c += 1;
+        width += 1;
+
+    return width
+
+def get_workout_height(sheet, cell):
+
 
 def read_sheet(sheet):
-    if(check_title(sheet.cell(row=1,column=1))):
-        read_workout(sheet.cell(row=1,column=1))
-    # iterate cells row by row until two consecutive cells with no value are found
+    sheet_data = []
+    consecutive_unused = 0
+    x = 1
+    y = 1
 
-def read_workout(cell):
+    while(consecutive_unused < 2):
+        current_cell = sheet.cell(row=x,column=y)
+        if(check_title(current_cell):
+            sheet_data.append(read_workout(sheet, current_cell))
+        elif(check_unused(current_cell):
+            consecutive_unused += 1
+
+        y += 1
+
+    x += 1
+        # iterate cells row by row until two consecutive cells with no value are found
+
+def read_workout(sheet, cell):
     while(cell.fill.start_color.index == 'FF000000')
 
     print(cell.value)
