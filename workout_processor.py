@@ -49,4 +49,5 @@ if __name__ == "__main__":
     #run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
     #print(data)
-    read('Chelsea Chen.xlsx')
+    #read('Chelsea Chen.xlsx')
+    read('Jonathan Fishleder.xlsx')

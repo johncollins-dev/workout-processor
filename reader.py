@@ -3,7 +3,13 @@ reader.py
 shamelessly hardcoded to read only my personal workout spreadsheets
 
 TODO:
-create tests for get_workout_width
+create tests for
+- get_workout_width
+- get_workout_height
+- check_title
+- check_unused
+- check_coaching_notes
+
 '''
 from openpyxl import load_workbook
 
@@ -36,10 +42,11 @@ def check_coaching_notes(cell):
 
 def read(filename):
     wb = load_workbook(filename, read_only=True)
-    wb.active = 6
+    wb.active = 9
     sheet = wb.active
 
     #temporary measure for testing read_sheet:
+    print('reading sheet ', sheet.title)
     read_sheet(sheet)
     #for sheet in wb.worksheets:
     #    if(sheet.title.startswith('Week')):
@@ -67,54 +74,69 @@ def get_workout_height(sheet, cell):
 # which is part of the workout section
 
 def read_sheet(sheet):
-    consecutive_unused_w = 0 # consecutive empty width cells
-    consecutive_unused_h = 0 # consecutive empty height cells
-    x = 1 # row
-    y = 1 # column
+    sheet_data = []
     
-    current_cell = sheet.cell(row=x,column=y)
-    current_workout_w = 1
-    current_workout_h = 1
-    
-    #scan vertically
-    while(consecutive_unused_h < 2):
-        # scan horizontally
-        while(consecutive_unused_w < 2):
-            if(check_title(current_cell)):
-                print("found title cell at: ", x, y)
-                current_workout_w = get_workout_width(sheet, current_cell)
-                current_workout_h = get_workout_height(sheet, current_cell)
-                read_workout(sheet, current_cell, current_workout_w, current_workout_h)
-                y += current_workout_w
-                current_cell = sheet.cell(row=x,column=y)
-                consecutive_unused_w = 0
+    # are these even needed or can I just move the pivot_cell inline like
+    # pivot_cell=sheet.cell(row=x+1, column=1)
+    x = 1
+    y = 1
+    pivot_cell = sheet.cell(row=x, column=y)
 
-            elif(check_unused(current_cell)):
-                consecutive_unused_w += 1
+    blank_count_h = 0
+    blank_count_v = 0
+
+    # go row by row of workout sections
+    #while( black cell count is less than 2):
+    while(blank_count_v < 2):
+        #print("iterating v")
+        #breakpoint()
+        # scan sheets horizontally until after last sheet is read
+        #while(black_cell count is less than 2):
+        while(blank_count_h < 2):
+            #print("iterating h")
+            # check that the cell is a title cell
+            if(check_title(pivot_cell)):
+                # yes - read workout, put the pivot at y += workout_width, blank cell count 0
+                #sheet_data.extend(read_workout(sheet, pivot_cell))
+                read_workout(sheet, pivot_cell)
+                y += get_workout_width(sheet, pivot_cell)
+                pivot_cell = sheet.cell(row=x, column=y)
+                blank_count_h = 0
+            # else
+            else:
+                # increase blank cell count by one
+                blank_count_h += 1
+                # put the pivot at y+= 1
                 y += 1
+                pivot_cell = sheet.cell(row=x, column=y)
 
-        #x += current_workout_h
-        y = 1 # reset to column 1
-        x += 1 # go down one row
-        current_cell = sheet.cell(row=x,column=y)
-        #print('x: ', x)
-        #print('y: ', y)
-        if(check_title(current_cell)):
-            consecutive_unused_w = 0 # go back to scanning horizontally
-        elif(check_unused(current_cell)):
-            consecutive_unused_h += 1
-            x += 1
-            print('cell ', x, y, ' is unused')
+        # put the pivot at y=1
+        y = 1
+        # put the pivot at x+1
+        x += 1
+        pivot_cell = sheet.cell(row=x, column=y)
+        #if(x == 24): print("cell value at x 24: ", pivot_cell.value)
+        #if(x == 25): print("cell value at x 25: ", pivot_cell.value)
+        #print("x: ", x)
+        # check if pivot is title cell
+        if(check_title(pivot_cell)):
+            # yes - blank_cell count horizontal is 0, 
+            blank_count_h = 0
+        # else, check if cell at pivot is unused
+        elif(check_unused(pivot_cell)):
+            # yes - blank_cell count vertical += 1
+            print("blank v on cell ", x, y)
+            blank_count_v += 1
+        #else, x+=1
+        elif(check_coaching_notes(pivot_cell)):
+            print("found a coaching notes cell!")
+            blank_count_v = 0
+            x += 4
+        #else:
+            #x += 1
 
-'''
-where I left off:
 
-    basically I am reading workouts left to right
-    when I land on 2 consecutive black cells, that means there are no more workouts to scan, horizontally or vertically
-    I am stuck on getting the reader to find the next title cell after reading horizontally and encountering 2 blank cells then reading the next level of workout sections
-'''
-
-def read_workout(sheet, cell, w, h):
+def read_workout(sheet, cell):
     print('Hi!')
     #while(cell.fill.start_color.index == 'FF000000')
     #print(cell.value)
