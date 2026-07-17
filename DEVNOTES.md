@@ -19,6 +19,10 @@ for clients while adding no extra work on top of the workout programming I do in
   will never be.
 - XLSX-workouts2HTML or something like that would have been a better name than "workout-processor"
 - whenever youre scanning through some 2d data structure, you usually want nested loops, use while loops if you don't know the dimensions, for if you do
+- when using openpyxl and reading a sheet in readonly=true mode, you might get the error
+  "AttributeError: 'EmptyCell' object has no attribute 'column'". This is because openpyxl creates
+  EmptyCells to maintain row and column alignment in a sheet and they do not contain column or row
+  data
 
 ## Workout Program Standard Format
 General program implementation criteria

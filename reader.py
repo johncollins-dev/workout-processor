@@ -38,7 +38,7 @@ def check_coaching_notes(cell):
 
 def read(filename):
     wb = load_workbook(filename, read_only=True)
-    wb.active = 4
+    wb.active = 0
     sheet = wb.active
 
     #temporary measure for testing read_sheet:
@@ -111,10 +111,40 @@ def read_sheet(sheet):
 
 def read_workout(sheet, cell):
     print('Reading: ', cell.value)
-    #while(cell.fill.start_color.index == 'FF000000')
-    #print(cell.value)
+    workout_data = []
     # start at provided cell
+    c = cell.column
+    r = cell.row
+    pivot_cell = sheet.cell(row=r, column=c)
+    width = get_workout_width(sheet, pivot_cell)
+    height = get_workout_height(sheet, pivot_cell)
+    for row in range(1, r+height-1):
+        line = {}
+        for col in range(1, c+width-1):
+            pivot_cell = sheet.cell(row=row, column=col)
+            if(pivot_cell.value == 'None'):
+                line[col] = ''
+            else:
+                line[pivot_cell.column] = pivot_cell.value
+            
+        workout_data.extend(line)
+        print(line)
+        line.clear
+
+
+
+    '''
     # iterate through rows and columns of singular workouts
-    # record data to list/dict
+    for row in sheet.iter_rows(min_row=r, max_col=c+width-1, max_row=r+height-1):
+        # record data to list/dict
+        line = {}
+        for cell in row:
+            if(cell.value == None):
+                line[
+            line[] = cell.value
+        workout_data.extend(line)
+        line.clear
+    '''
+    # delete empty rows
     # return list/dict
 
