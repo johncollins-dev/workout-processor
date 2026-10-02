@@ -38,7 +38,7 @@ def check_coaching_notes(cell):
 
 def read(filename):
     wb = load_workbook(filename, read_only=True)
-    wb.active = 0
+    wb.active = 3
     sheet = wb.active
 
     #temporary measure for testing read_sheet:
@@ -46,7 +46,7 @@ def read(filename):
     read_sheet(sheet)
     #for sheet in wb.worksheets:
     #    if(sheet.title.startswith('Week')):
-    #        read_sheet(sheet)
+    #       read_sheet(sheet)
 
 def get_workout_width(sheet, cell):
     width = 1

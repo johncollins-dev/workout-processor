@@ -14,11 +14,15 @@ for clients while adding no extra work on top of the workout programming I do in
 - links cannot be played within app on mobile
 
 ## Lessons learned from workout-processor
+- code that is not tested cannot be used. every method/function and file must have tests and they
+  must be specific to what they are testing. Recall test-driven development from John Robert's
+  class
 - if you're going to hardcode, dont make your hardcoded code scalable or maintainable. Lean into
   the hardcodedness fully and don't waste time and effort trying to make it something its not and
   will never be.
 - XLSX-workouts2HTML or something like that would have been a better name than "workout-processor"
-- whenever youre scanning through some 2d data structure, you usually want nested loops, use while loops if you don't know the dimensions, for if you do
+- whenever youre scanning through some 2d data structure, you usually want nested loops, use while
+  loops if you don't know the dimensions, for if you do
 - when using openpyxl and reading a sheet in readonly=true mode, you might get the error
   "AttributeError: 'EmptyCell' object has no attribute 'column'". This is because openpyxl creates
   EmptyCells to maintain row and column alignment in a sheet and they do not contain column or row

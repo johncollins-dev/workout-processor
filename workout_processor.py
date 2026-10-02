@@ -9,7 +9,7 @@ from config import ACCEPTED_EXTENSIONS
 from data.data import Exercise, Muscle, Equipment, Adaptation, Movement, Tag
 from reader import read
 
-USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.pdf"
+USAGE_MESSAGE = "usage: workout-processor 'Exercise Program.xlsx"
 
 # returns true if the filename is a File that exists
 def validate_file(filename):
@@ -43,12 +43,14 @@ def run(input_file):
 
 # TODO: If no file is passed as command line argument, print usage message
 if __name__ == "__main__":
+    sample1 = Path.cwd() / "tests" / "samples" / "Sample 1.xlsx"
+    sample2 = Path.cwd() / "tests" / "samples" / "Sample 2.xlsx"
+    sample3 = Path.cwd() / "tests" / "samples" / "Sample 3.xlsx"
+    sample4 = Path.cwd() / "tests" / "samples" / "Sample 4.xlsx"
     #if len(sys.argv) != 2:
     #    print(USAGE_MESSAGE)
 
     #run(sys.argv[1])
     #data = pd.read_excel(sys.argv[1], index_col=0)
     #print(data)
-    #read('Chelsea Chen.xlsx')
-    #read('Jonathan Fishleder.xlsx')
-    read('Kamal Ndousse.xlsx')
+    read(sample1)
