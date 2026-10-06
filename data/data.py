@@ -1,107 +1,126 @@
 """
 data.py
+
+Provides data structures for holding the all the data in an xlsx sheet
+Structures will be used to enter data into reps database
 """
+
 from __future__ import annotations
 from dataclasses import dataclass, field
 import datetime
+from typing import Union
 
-# used in exercise
+@dataclass
+class Trainer:
+    availability: [[0 for hour in range(24)] for day in range(7)]
+    
+@dataclass
+class Athlete:
+    goal: str
+    injury_history: str
+    availability: [[0 for hour in range(24)] for day in range(7)]
+
+@dataclass
+class User:
+    first_name: str
+    last_name: str
+    dob: datetime
+    role: Trainer | Athlete
+
 @dataclass
 class Muscle:
     name: str
+    concentric_action: str
+    eccentric_action: str
+    isometric_action: str
 
-# Enum potential. Using class to allow user customization/specification
-# used in Exercise
-@dataclass
-class Adaptation:
-    name: str
-
-# Enum potential. Using class to allow user customization/specification
-# used in Exercise
-@dataclass
-class Movement:
-    name: str
-
-# used in Exercise and Block
 @dataclass
 class Tag:
-    name: str
+    tag: str
 
-# used in Exercise
 @dataclass
 class Equipment:
     name: str
 
 @dataclass
+class Movement:
+    name: str
+
+@dataclass
+class Adaptation:
+    name: str
+
+@dataclass
 class Exercise:
     name: str
-    demo: str = 'ADD DEMONSTRATION'
+    demo: str
+    demo_w: str
+    instructions: str
+    description: str
     prime_mover: Muscle | None = None
-    equipment: Equipment | None = None
-    instructions: str = 'ADD INSTRUCTIONS'
-    description: str = 'ADD DESCRIPTION'
-    notes: str = 'ADD NOTES'
-    progression: 'Exercise | None' = None
-    regression: 'Exercise | None' = None
-    adaptation: Adaptation | None = None
-    movement: Movement | None = None
-    synergists: list[Muscle] = field(default_factory=list)
-    tags: list[Tag] = field(default_factory=list)
+    synergist_list: list[Muscle] = field(default_factory=list)
+    adaptation = Adaptation | None = None
+    movement = Movement | None = None
+    tag_list: list[Tag] = field(default_factory=list)
+    equipment = Equipment | None = None
+    Difficulty = str
+    notes = str
 
-'''
-Cells are to be used in lines
-They are essentially key value pairs, where the key is a string value such as "Set 1" and the value
-is a string that the user can input
-Cells can also be used for Tempo and Rest, which would contain their respective inputable string
-values
-'''
+
 @dataclass
-class Cell:
-    key: str
-    value: str
+class Set:
+    title: str
+    rep_count: int
+    resistance_kg: float
+    intensity: float
+    tempo: str
+    volume: float
+    order_index: int
 
-'''
-Lines contain a single exercise an an optional set of sets and other modifiers for that specific
-exercise.
-Used by Blocks and Workouts, user can modify number of sets and what other variables there are
-(tempo, intensity, rest, etc.)
-Doesn't have to hold an exercise, can hold a string like "Push Up"
-a Line is declared with exercise/string as first argument then an arbitrary list keys in kv pairs
-'''
 @dataclass
 class Line:
-    exercise: Exercise
-    cells: list[Cell] = field(default_factory=list)
+    exercise: Exercise | None = None
+    seconds_rest_between_sets: int
+    order_index: int
+    set_list: list[Set] = field(default_factory=list)
 
-'''
-Blocks are an abstraction layer for organizing lines into workouts. They can take the form of
-traditional blocks such as warm ups, activation, strength, cool down, etc. or they can encapsulate
-lines into a singular workout. Blocks can contain other blocks. You can have a workout block that
-contains a warm up and strength block and even a block that contains workout blocks, a block that
-contains blocks of blocks that contain workouts, etc.
-'''
-# TODO: implement super/giant set functionality
 @dataclass
 class Block:
     title: str
-    date: datetime | None = None
-    purpose: str = 'ADD PURPOSE'
-    description: str = 'ADD DESCRIPTION'
-    lines: list[Line] = field(default_factory=list)
-    tags: list[Tag] = field(default_factory=list)
+    description: str
+    assigned_timestamp: datetime
+    minutes_to_complete: int
+    line_list: list[Line] = field(default_factory=list)
+    tag_list: list[Tag] = field(default_factory=list)
 
-
-
-
-
-
-
-'''
-replaced by Block class
 @dataclass
 class Workout:
-    name: str
-    date: datetime
-    blocks: list[Block] = field(default_factory=list)
-    exercises: list[Exercise] = field(default_factory=list)
-'''
+    title: str
+    description: str
+    notes: str
+    assigned_timestamp: datetime
+    minutes_to_complete: int
+    line_and_block_list: list[Line | Block] = field(default_factory=list)
+    tag_list: list[Tag] = field(default_factory=list)
+
+@dataclass
+class Period:
+    title: str
+    description: str
+    notes: str
+    start_date: datetime
+    end_date: datetime
+    workout_list: list[Workout] = field(default_factory=list)
+    tag_list: list[Tag] = field(default_factory=list)
+
+@dataclass
+class Training_Program:
+    author: User
+    title: str
+    description: str
+    notes: str
+    start_date: datetime
+    end_date: datetime
+    date_created: datetime
+    period_and_workout_list: list[Period | Workout] = field(default_factory=list)
+    tag_list: list[Tag] = field(default_factory=list)
