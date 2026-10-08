@@ -5,7 +5,7 @@ such as xlsx or csv into a more human-readable and presentable html file.
 ## Roadmap
 * [x] Fitness Program Data Structure
 * [ ] reader - in progress
-* [ ] builder
+* [x] builder
 * [ ] printer
 * [ ] editor
 
