@@ -32,6 +32,9 @@ Commands:
 .venv/bin/python3 workout_processor.py
 ```
 
+## Code Style
+- Maximum line length of 100 characters for python files
+
 ## Architecture
 
 ### Data model (`data/data.py`)

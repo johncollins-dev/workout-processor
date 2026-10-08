@@ -7,7 +7,12 @@ from data.data import (
 )
 from datetime import datetime
 
-def build_muscle(name: str, concentric_action: str, eccentric_action: str, isometric_action: str) -> Muscle:
+def build_muscle(
+    name: str,
+    concentric_action: str,
+    eccentric_action: str,
+    isometric_action: str,
+) -> Muscle:
     return Muscle(
             name=" ".join(name.split()).title(),
             concentric_action=concentric_action.strip().capitalize(),
@@ -27,13 +32,32 @@ def build_movement(name: str) -> Movement:
 def build_adaptation(name: str) -> Adaptation:
     return Adaptation(name=name.strip().title())
 
-def build_exercise(name: str, demo: str, instructions: str, description: str, demo_w: str = '') -> Exercise:
-    return Exercise(name=name.strip().title(), demo=demo, instructions=instructions, description=description, demo_w=demo_w)
+def build_exercise(
+    name: str,
+    demo: str,
+    instructions: str,
+    description: str,
+    demo_w: str = '',
+) -> Exercise:
+    return Exercise(
+            name=name.strip().title(),
+            demo=demo,
+            instructions=instructions,
+            description=description,
+            demo_w=demo_w
+    )
 
 def get_volume(rep_count: int, resistance_kg: float) -> float:
     return rep_count * resistance_kg
 
-def build_set(title: str, rep_count: int, resistance_kg: float, intensity: float, tempo: str, order_index: int) -> Set:
+def build_set(
+    title: str,
+    rep_count: int,
+    resistance_kg: float,
+    intensity: float,
+    tempo: str,
+    order_index: int,
+) -> Set:
     return Set(
             title=title.strip().title(),
             rep_count=rep_count,
@@ -44,7 +68,12 @@ def build_set(title: str, rep_count: int, resistance_kg: float, intensity: float
             order_index=order_index
     )
 
-def build_line(seconds_rest_between_sets: int, order_index: int, exercise: Exercise | None = None, sets: list[Set] | None = None) -> Line:
+def build_line(
+    seconds_rest_between_sets: int,
+    order_index: int,
+    exercise: Exercise | None = None,
+    sets: list[Set] | None = None,
+) -> Line:
     return Line(
             seconds_rest_between_sets=seconds_rest_between_sets,
             order_index=order_index,
@@ -52,7 +81,14 @@ def build_line(seconds_rest_between_sets: int, order_index: int, exercise: Exerc
             set_list=sets or []
     )
 
-def build_block(title: str, description: str, assigned_timestamp: datetime, minutes_to_complete: int, lines: list[Line] | None = None, tags: list[Tag] | None = None) -> Block:
+def build_block(
+    title: str,
+    description: str,
+    assigned_timestamp: datetime,
+    minutes_to_complete: int,
+    lines: list[Line] | None = None,
+    tags: list[Tag] | None = None,
+) -> Block:
     return Block(
             title=title.strip().title(),
             description=description,
@@ -62,7 +98,15 @@ def build_block(title: str, description: str, assigned_timestamp: datetime, minu
             tag_list=tags or []
     )
 
-def build_workout(title: str, description: str, notes: str, assigned_timestamp: datetime, minutes_to_complete: int, lines_and_blocks: list[Line | Block] | None = None, tags: list[Tag] | None = None) -> Workout:
+def build_workout(
+    title: str,
+    description: str,
+    notes: str,
+    assigned_timestamp: datetime,
+    minutes_to_complete: int,
+    lines_and_blocks: list[Line | Block] | None = None,
+    tags: list[Tag] | None = None,
+) -> Workout:
     return Workout(
             title=title.strip().title(),
             description=description,
@@ -73,7 +117,15 @@ def build_workout(title: str, description: str, notes: str, assigned_timestamp: 
             tag_list=tags or []
     )
 
-def build_period(title: str, description: str, notes: str, start_date: datetime, end_date: datetime, workouts: list[Workout] | None = None, tags: list[Tag] | None = None) -> Period:
+def build_period(
+    title: str,
+    description: str,
+    notes: str,
+    start_date: datetime,
+    end_date: datetime,
+    workouts: list[Workout] | None = None,
+    tags: list[Tag] | None = None,
+) -> Period:
     return Period(
             title=title.strip().title(),
             description=description,
@@ -84,7 +136,17 @@ def build_period(title: str, description: str, notes: str, start_date: datetime,
             tag_list=tags or []
     )
 
-def build_training_program(author, title: str, description: str, notes: str, start_date: datetime, end_date: datetime, date_created: datetime, periods_and_workouts: list[Period | Workout] | None = None, tags: list[Tag] | None = None) -> Training_Program:
+def build_training_program(
+    author,
+    title: str,
+    description: str,
+    notes: str,
+    start_date: datetime,
+    end_date: datetime,
+    date_created: datetime,
+    periods_and_workouts: list[Period | Workout] | None = None,
+    tags: list[Tag] | None = None,
+) -> Training_Program:
     return Training_Program(
             author=author,
             title=title.strip().title(),

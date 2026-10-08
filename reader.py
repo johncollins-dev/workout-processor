@@ -15,7 +15,11 @@ from openpyxl import load_workbook
 
 def check_title(cell):
     if cell.value is not None:
-        return cell.value.startswith('Day') and cell.font.bold and cell.fill.start_color.index == 'FF000000'
+        return (
+            cell.value.startswith('Day')
+            and cell.font.bold
+            and cell.fill.start_color.index == 'FF000000'
+        )
 
     return False
 
