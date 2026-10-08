@@ -54,17 +54,17 @@ class Adaptation:
 class Exercise:
     name: str
     demo: str
-    demo_w: str
     instructions: str
     description: str
+    demo_w: str = ''
     prime_mover: Muscle | None = None
     synergist_list: list[Muscle] = field(default_factory=list)
-    adaptation = Adaptation | None = None
-    movement = Movement | None = None
+    adaptation: Adaptation | None = None
+    movement: Movement | None = None
     tag_list: list[Tag] = field(default_factory=list)
-    equipment = Equipment | None = None
-    Difficulty = str
-    notes = str
+    equipment: Equipment | None = None
+    difficulty: str = ''
+    notes: str = ''
 
 
 @dataclass
@@ -79,9 +79,9 @@ class Set:
 
 @dataclass
 class Line:
-    exercise: Exercise | None = None
     seconds_rest_between_sets: int
     order_index: int
+    exercise: Exercise | None = None
     set_list: list[Set] = field(default_factory=list)
 
 @dataclass
