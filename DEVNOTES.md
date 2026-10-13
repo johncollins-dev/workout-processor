@@ -7,6 +7,29 @@ and ouput html files that present the training program and renditions of the wor
 is to provide a more human readable and presentable representation of the workout programs I make
 for clients while adding no extra work on top of the workout programming I do in google sheets.
 
+## Structure
+- workout_processor.py - main driver of the program, is a CLI app
+- data.py - defines the necessary data structures needed to take in training program information
+- config.py - contains default configuration for the program
+- reader.py - takes an input file and reads in the data using openpyxl
+- builder.py - builds a training program start to finish
+- printer.py - prints a workout program to HTML using jinja2
+
+### Training Program Structure
+- Program
+    * Period (ex. Macro, Meso, Micro)
+        - Workout
+            * Block (ex. warmup, activation, skills, strength)
+                - Line (1 Exercise, info about sets, rest, etc.)
+                    - Exercise
+                    - Set
+
+* Programs, Periods, Workouts, Blocks, and Exercises are saveable data that can be used later
+* Every datatype above should be a workable/displayable (html) item that can be used without
+  interference from the program
+* Everything can use default or user specified tags (#strength, #barbell) for easy searching and
+  to improve program recommendation
+
 ## Inadequacies of Sheets
 - not a user friendly experience, especially on mobile
 - can be hard to find previously used blocks that I want to copy into other programs
@@ -27,43 +50,17 @@ for clients while adding no extra work on top of the workout programming I do in
   "AttributeError: 'EmptyCell' object has no attribute 'column'". This is because openpyxl creates
   EmptyCells to maintain row and column alignment in a sheet and they do not contain column or row
   data
+- dont let your DEVNOTES.md swell with info, trim out the unnecessary information and keep the file
+  lean just like Claude.md
 
 ## Workout Program Standard Format
 General program implementation criteria
 - Should not follow specific "schools" of programming such as IOM with unfamiliar terminology (4Q)
 - Should be simple
 - Ultimate shape of programs/workouts up to the user
-    - "Periods" and "Blocks" should be optional organizational categories
     - if a user wants to throw in a list of exercises in a workout, they should be able to
 
-### Structure
-- workout_processor.py - main driver of the program, is a CLI app
-- data.py - defines the necessary data structures needed to take in training program information
-- config.py - contains default configuration for the program
-- reader.py - takes an input file and reads in the data using openpyxl
-- builder.py - builds a training program start to finish
-- printer.py - prints a workout program to HTML using jinja2
-
-#### Training Program Structure
-- Program
-    * Period (ex. Macro, Meso, Micro)
-        - Workout
-            * Block (ex. warmup, activation, skills, strength)
-                - Line (1 Exercise, info about sets, rest, etc.)
-                    - Exercise
-* Programs, Periods, Workouts, Blocks, and Exercises are saveable data that can be used later
-* Every datatype above is optional. Each one should be a workable/displayable (html) item that can
-  be used without interference from the program
-* Everything can use default or user specified tags (#strength, #barbell) for easy searching and
-  to improve program recommendation
-* so far, none of these datatypes deal with sets or weights/reps. they are only a way to abstract
-  exercises and lists of exercises.
-
 ## Future Considerations
-- Programs, periods, workouts, blocks could be replaced by arbitrary "layers" that can contain
-  exercises or other layers
-- There are already human anatomy apis and exercise databases out there. Need to decide on whether
-  to use those or create own.
 - End result of these programs is creating the "Canvas" of gyms. This software should be easy for
   businesses to implement and run and attach their own branding.
     * Look at what strengthportal tried to do and why they seemingly "Failed"
