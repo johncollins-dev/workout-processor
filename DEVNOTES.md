@@ -134,6 +134,9 @@ class Line:
 - set the default to NONE when using a class as an instance variable then
   account for it in your code later
 
+### workout-processor
+- CLI program that ties the reader, builder, and printer together
+
 ### reader.py
 - uses openpyxl to open and read in an xlsx file
 - to find a workout layer, reader looks for a black background, white foreground, bold text
@@ -155,6 +158,16 @@ class Line:
 
 - read_workout_next(string) - returns string of first workout found in string, used with read_sheet
 - Sheets and workouts maybe should be iterable.
-  
+
+### builder.py
+- provides functions to populate dataclasses in data.py with fitness information
+### printer.py
+- accesses dataclasses and prints them to html templates through jinja2
+
+    as I work on printer, I'm wondering if keeping the string representation for each line that
+    reader spits out would be useful data to keep in the line data structure. Something like
+    str_representation that printer could take directly and print without accessing all those
+    values again
 ### editor.py
-- webui for building workout programs which can be used by reader and printer
+- curses program that immitates google sheets data input
+- also provides webui for building workout programs which can be used by reader and printer
