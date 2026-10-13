@@ -53,9 +53,9 @@ class Adaptation:
 @dataclass
 class Exercise:
     name: str
-    demo: str
-    instructions: str
-    description: str
+    demo: str = ''
+    instructions: str = ''
+    description: str = ''
     demo_w: str = ''
     prime_mover: Muscle | None = None
     synergist_list: list[Muscle] = field(default_factory=list)
