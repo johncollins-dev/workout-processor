@@ -1,5 +1,9 @@
 # workout-processor devnotes
 
+## TODO
+1. Address how stretch holds are implemented in line dataclass (ex. 30s Hold)
+2. Decide whether a toString method should be employed for dataclasses.
+
 ## Purpose
 Like a XLSX2HTML program for my workout sheets
 This program's purpose is to accept as input training programs as .xlsx files from my work drive
@@ -163,8 +167,9 @@ class Line:
 - provides functions to populate dataclasses in data.py with fitness information
 ### printer.py
 - accesses dataclasses and prints them to html templates through jinja2
+- anything that makes workout data more readable/presentable belongs in printer
 
-    as I work on printer, I'm wondering if keeping the string representation for each line that
+as I work on printer, I'm wondering if keeping the string representation for each line that
     reader spits out would be useful data to keep in the line data structure. Something like
     str_representation that printer could take directly and print without accessing all those
     values again
