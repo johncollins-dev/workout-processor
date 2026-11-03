@@ -56,6 +56,7 @@ for clients while adding no extra work on top of the workout programming I do in
   data
 - dont let your DEVNOTES.md swell with info, trim out the unnecessary information and keep the file
   lean just like Claude.md
+- review your AI slop once in a while
 
 ## Workout Program Standard Format
 General program implementation criteria
@@ -140,6 +141,9 @@ class Line:
 
 ### workout-processor
 - CLI program that ties the reader, builder, and printer together
+- CLI calls reader, which produces the data of the spreadsheet in strings that builder can read
+- CLI calls builder, which generates data from the reader output that printer can then read
+- CLI calls printer, which takes the data and populates html templates that can then be used
 
 ### reader.py
 - uses openpyxl to open and read in an xlsx file
@@ -168,6 +172,12 @@ class Line:
 ### printer.py
 - accesses dataclasses and prints them to html templates through jinja2
 - anything that makes workout data more readable/presentable belongs in printer
+- includes print_* functions that return a dictionary of data describing the workout structure
+    * **print_tag** - returns a **string** representation of a tag with # prefix
+    * **print_line** - returns a **dictionary**
+        - begins with Exercise name
+        - loops through it's sets 
+        - adds rest at the end
 
 as I work on printer, I'm wondering if keeping the string representation for each line that
     reader spits out would be useful data to keep in the line data structure. Something like
