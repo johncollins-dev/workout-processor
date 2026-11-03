@@ -2,7 +2,7 @@
 printer.py
 '''
 from jinja2 import Environment, FileSystemLoader
-from data.data import Tag
+from data.data import Tag, Line, Block, Workout, Period, Training_Program
 
 def print_tag(tag: Tag):
     return f"#{tag.tag}"
@@ -30,10 +30,26 @@ def print_block(block: Block):
 def print_workout():
     return 0
 
-environment = Environment(loader=FileSystemLoader("templates/"))
-workout_filename = "workout.html"
-template = environment.get_template("workout.html")
 
-with open(workout_filename, mode="w", encoding="utf-8") as workout:
-    workout.write(template.render(workout_title="Day 1 11/3"))
-    print(f"... wrote {template}")
+class Printer:
+    environment = Environment(loader=FileSystemLoader("templates/"))
+
+    def __init__(self, obj):
+        if isinstance(obj, Line):
+            line_dict = print_line(obj)
+            template = self.environment.get_template("line.html")
+            self.html = template.render(line=line_dict)
+        elif isinstance(obj, Block):
+            raise NotImplementedError("Printer does not support Block yet")
+        elif isinstance(obj, Workout):
+            raise NotImplementedError("Printer does not support Workout yet")
+        elif isinstance(obj, Period):
+            raise NotImplementedError("Printer does not support Period yet")
+        elif isinstance(obj, Training_Program):
+            raise NotImplementedError("Printer does not support Training_Program yet")
+        else:
+            raise TypeError(f"Printer does not support type {type(obj).__name__}")
+
+    def write(self, filename):
+        with open(filename, mode="w", encoding="utf-8") as f:
+            f.write(self.html)

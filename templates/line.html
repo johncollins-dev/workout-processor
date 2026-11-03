@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ line['Exercise'] }}</title>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr>
+                    {% for set in line %}
+                    <td> {{line[set]}} </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

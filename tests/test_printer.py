@@ -2,7 +2,7 @@ import pytest
 from datetime import datetime
 from data.data import Exercise, Set, Line, Block, Workout
 from builder import build_tag, build_set, build_line, build_block
-from printer import print_tag, print_line, print_block, print_workout
+from printer import print_tag, print_line, print_block, print_workout, Printer
 
 def test_print_tag():
     expected = "#hypertrophy"
@@ -32,6 +32,17 @@ def test_print_line():
                 )
     result = print_line(test_line)
     assert result == expected
+
+
+def test_printer_line():
+    test_line = Line(seconds_rest_between_sets=60,
+                     order_index=1,
+                     exercise=Exercise(name="BB Incline Press").name,
+                     set_list=[Set(title="Set 1", rep_count=10, resistance_kg=55, intensity=0.50,
+                                   tempo="slow", volume=550, order_index=1)])
+    result = Printer(test_line)
+    assert "BB Incline Press" in result.html
+    assert "10x55kg" in result.html
 
 
 def test_print_block():
@@ -77,3 +88,9 @@ def test_print_block():
 
 def test_print_workout():
     assert 1 == 1
+
+def test_print_period():
+    pass
+
+def test_print_training_program():
+    pass
