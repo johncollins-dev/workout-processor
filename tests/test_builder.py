@@ -39,7 +39,7 @@ def test_build_muscle():
 
 def test_build_tag():
     result = build_tag("unilateral")
-    assert result == Tag(tag="#unilateral")
+    assert result == Tag(tag="unilateral")
 
 def test_build_equipment():
     result = build_equipment("  resistance band ")

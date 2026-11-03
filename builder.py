@@ -21,7 +21,7 @@ def build_muscle(
     )
 
 def build_tag(name: str) -> Tag:
-    return Tag(tag=f"#{name.strip()}")
+    return Tag(tag=f"{name.strip()}")
 
 def build_equipment(name: str) -> Equipment:
     return Equipment(name=name.strip().title())
