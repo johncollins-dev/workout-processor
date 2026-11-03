@@ -2,9 +2,10 @@
 printer.py
 '''
 from jinja2 import Environment, FileSystemLoader
+from data.data import Tag
 
 def print_tag(tag: Tag):
-    return tag.tag
+    return f"#{tag.tag}"
 
 def print_line(line: Line):
     line_dict = {}
@@ -28,3 +29,11 @@ def print_block(block: Block):
 
 def print_workout():
     return 0
+
+environment = Environment(loader=FileSystemLoader("templates/"))
+workout_filename = "workout.html"
+template = environment.get_template("workout.html")
+
+with open(workout_filename, mode="w", encoding="utf-8") as workout:
+    workout.write(template.render(workout_title="Day 1 11/3"))
+    print(f"... wrote {template}")
