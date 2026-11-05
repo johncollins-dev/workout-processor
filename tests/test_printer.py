@@ -19,7 +19,7 @@ def test_print_line():
     }
     test_line = Line(seconds_rest_between_sets=60,
                      order_index=1,
-                     exercise=Exercise(name="BB Incline Press").name,
+                     exercise=Exercise(name="BB Incline Press"),
                      set_list=[Set(title="Set 1", rep_count=10, resistance_kg=55, intensity=0.50,
                                    tempo="slow", volume=550, order_index=1),
                                Set(title="Set 2", rep_count=10, resistance_kg=60, intensity=0.50,
@@ -37,7 +37,7 @@ def test_print_line():
 def test_printer_line():
     test_line = Line(seconds_rest_between_sets=60,
                      order_index=1,
-                     exercise=Exercise(name="BB Incline Press").name,
+                     exercise=Exercise(name="BB Incline Press"),
                      set_list=[Set(title="Set 1", rep_count=10, resistance_kg=55, intensity=0.50,
                                    tempo="slow", volume=550, order_index=1)])
     result = Printer(test_line)
