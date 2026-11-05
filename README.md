@@ -1,11 +1,10 @@
 # workout-xlsx2html
-workout-xlsx2html is a program for organizing and processing workouts from a spreadsheet format
-such as xlsx or csv into a more human-readable and presentable html file.
+workout-xlsx2html generates an html representation of a training program from its .xlsx file
 
-## Roadmap
-* [x] Fitness Program Data Structure
-* [ ] reader - in progress
-* [x] builder
-* [ ] printer
-* [ ] editor
+## Overview
+An .xlsx training program gets passed to workout_processor.py where its data gets read in by the reader. The builder then takes that read-in data and populates the data structures. Finally, the data gets passed to the printer which generates html files from templates. The final output is a static html representation of the whole training program.
+
+## Usage
+### Running Tests
+python -m pytest tests/*
 
