@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest"]
+dev = ["pytest", "pylint"]
 
 [build-system]
 requires = ["setuptools"]
@@ -20,3 +20,27 @@ py-modules = ["builder", "config", "printer", "reader", "workout_processor"]
 
 [tool.setuptools.packages.find]
 include = ["data*"]
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-many-arguments",
+    "too-many-positional-arguments",
+    "too-many-instance-attributes",
+    "too-few-public-methods",
+    "invalid-name",
+    "wrong-import-order",
+    "wrong-import-position",
+    "superfluous-parens",
+    "singleton-comparison",
+    "trailing-whitespace",
+    "trailing-newlines",
+    "line-too-long",
+    "unused-import",
+    "unused-variable",
+    "pointless-statement",
+    "pointless-string-statement",
+    "fixme",
+]

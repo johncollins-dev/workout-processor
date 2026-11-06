@@ -10,12 +10,14 @@ def print_tag(tag: Tag):
 def print_line(line: Line):
     line_dict = {}
     line_dict["Exercise"] = line.exercise.name
-    for set in line.set_list:
+    for exercise_set in line.set_list:
         # if sets do not use weight, the rep count will be printed without weight in kg
-        if(set.resistance_kg > 0):
-            line_dict[set.title] = f"{set.rep_count}x{set.resistance_kg:g}kg"
+        if(exercise_set.resistance_kg > 0):
+            line_dict[exercise_set.title] = (
+                f"{exercise_set.rep_count}x{exercise_set.resistance_kg:g}kg"
+            )
         else:
-            line_dict[set.title] = f"{set.rep_count}"
+            line_dict[exercise_set.title] = f"{exercise_set.rep_count}"
 
     line_dict["Rest"] = f"{line.seconds_rest_between_sets}s"
     return line_dict

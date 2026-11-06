@@ -8,7 +8,6 @@ Structures will be used to enter data into reps database
 from __future__ import annotations
 from dataclasses import dataclass, field
 import datetime
-from typing import Union
 
 @dataclass
 class Trainer:
